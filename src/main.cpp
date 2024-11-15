@@ -2,7 +2,7 @@
 #include <ESP32Servo.h>
 #include "l293d.h"
 
-int servoPin = 21;
+int servoPin = 13;
 Servo servomotor;
 
 //1 Motor FR, 2 Motor HR, 3 Motor FL, 4 Motor HL
@@ -152,25 +152,24 @@ void infra_scann(){
 void distance_check(){
   servomotormiddle();
   distance_front = distance_measure();
+  Serial.println(distance_front);
   if(distance_front <= 20) {
     move_stop();
     servomotorright();
-    delay(250);
+    delay(1000);
     distance_right = distance_measure();
     servomotorleft();
-    delay(250);
+    delay(1000);
     distance_left = distance_measure();
-    delay(250);
+    delay(1000);
     servomotormiddle();
     chose_way(distance_right, distance_left);
   }else {
     move_forward();
   }
-  infra_scann();
+  //infra_scann();
 }
 
 void loop() {
-  //distance_check();
-  move_forward();
-  delay(1000);
+  distance_check();
 }
