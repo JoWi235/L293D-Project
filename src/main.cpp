@@ -5,11 +5,11 @@
 int servoPin = 13;
 Servo servomotor;
 
-//1 Motor FR, 2 Motor HR, 3 Motor FL, 4 Motor HL
+//1 Motor FR(Front Right), 2 Motor BR(Back Right), 3 Motor FL(Front Left), 4 Motor BL(Back Left)
 Motor motor_FR(14,27);
-Motor motor_HR(26,25);
+Motor motor_BR(26,25);
 Motor motor_FL(17,5);
-Motor motor_HL(18,19);
+Motor motor_BL(18,19);
 
 int trigger = 33;
 int echo = 32;
@@ -30,12 +30,12 @@ void setup() {
   // Motoren Output
   pinMode(motor_FR.getPin1(), OUTPUT);
   pinMode(motor_FR.getPin2(), OUTPUT);
-  pinMode(motor_HR.getPin1(), OUTPUT);
-  pinMode(motor_HR.getPin2(), OUTPUT);
+  pinMode(motor_BR.getPin1(), OUTPUT);
+  pinMode(motor_BR.getPin2(), OUTPUT);
   pinMode(motor_FL.getPin1(), OUTPUT);
   pinMode(motor_FL.getPin2(), OUTPUT);
-  pinMode(motor_HL.getPin1(), OUTPUT);
-  pinMode(motor_HL.getPin2(), OUTPUT);
+  pinMode(motor_BL.getPin1(), OUTPUT);
+  pinMode(motor_BL.getPin2(), OUTPUT);
   
   // Rest
   Serial.begin(115200);
@@ -48,50 +48,50 @@ void setup() {
 void move_forward(){
   motor_FR.forward();
   motor_FL.forward();
-  motor_HR.forward();
-  motor_HL.forward();
+  motor_BR.forward();
+  motor_BL.forward();
 }
 
 void move_backward(){
   motor_FR.backward();
   motor_FL.backward();
-  motor_HR.backward();
-  motor_HL.backward();
+  motor_BR.backward();
+  motor_BL.backward();
 }
 
 void move_stop(){
   motor_FR.stop();
   motor_FL.stop();
-  motor_HR.stop();
-  motor_HL.stop();
+  motor_BR.stop();
+  motor_BL.stop();
 }
 
 void move_right(){
   motor_FR.backward();
   motor_FL.forward();
-  motor_HR.forward();
-  motor_HL.backward();
+  motor_BR.forward();
+  motor_BL.backward();
 }
 
 void move_left(){
   motor_FR.forward();
   motor_FL.backward();
-  motor_HR.backward();
-  motor_HL.forward();
+  motor_BR.backward();
+  motor_BL.forward();
 }
 
 void move_right_turn(){
   motor_FR.backward();
   motor_FL.forward();
-  motor_HR.backward();
-  motor_HL.forward();
+  motor_BR.backward();
+  motor_BL.forward();
 }
 
 void move_left_turn(){
   motor_FR.forward();
   motor_FL.backward();
-  motor_HR.forward();
-  motor_HL.backward();
+  motor_BR.forward();
+  motor_BL.backward();
 }
 
 void servomotorright(){
